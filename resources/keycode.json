@@ -1,0 +1,390 @@
+{
+  "pairs": [
+    {
+      // Find CodeKey
+      "keyCode": "-1",
+      "tosKey": "PADENTER",
+      "display": "NUMPADENTER"
+    },
+    {
+      "keyCode": "8",
+      "tosKey": "BACKSPACE",
+      "display": "Backspace"
+    },
+    {
+      "keyCode": "9",
+      "tosKey": "TAB",
+      "display": "Tab"
+    },
+    {
+      "keyCode": "10",
+      "tosKey": "ENTER",
+      "display": "Enter"
+    },
+    {
+      "keyCode": "16",
+      "tosKey": "SHIFT",
+      "display": "Shift"
+    },
+    {
+      "keyCode": "17",
+      "tosKey": "LCTRL",
+      "display": "Ctrl"
+    },
+    {
+      "keyCode": "18",
+      "tosKey": "LALT",
+      "display": "Alt"
+    },
+    {
+      "keyCode": "27",
+      "tosKey": "ESCAPE",
+      "display": "Esc"
+    },
+    {
+      "keyCode": "32",
+      "tosKey": "SPACE",
+      "display": "Space"
+    },
+    {
+      "keyCode": "37",
+      "tosKey": "LEFT",
+      "display": "Left"
+    },
+    {
+      "keyCode": "38",
+      "tosKey": "UP",
+      "display": "Up"
+    },
+    {
+      "keyCode": "39",
+      "tosKey": "RIGHT",
+      "display": "Right"
+    },
+    {
+      "keyCode": "40",
+      "tosKey": "DOWN",
+      "display": "Down"
+    },
+    {
+      "keyCode": "45",
+      "tosKey": "MINUS",
+      "display": "-"
+    },
+    {
+      "keyCode": "48",
+      "tosKey": "0",
+      "display": "0"
+    },
+    {
+      "keyCode": "49",
+      "tosKey": "1",
+      "display": "1"
+    },
+    {
+      "keyCode": "50",
+      "tosKey": "2",
+      "display": "2"
+    },
+    {
+      "keyCode": "51",
+      "tosKey": "3",
+      "display": "3"
+    },
+    {
+      "keyCode": "52",
+      "tosKey": "4",
+      "display": "4"
+    },
+    {
+      "keyCode": "53",
+      "tosKey": "5",
+      "display": "5"
+    },
+    {
+      "keyCode": "54",
+      "tosKey": "6",
+      "display": "6"
+    },
+    {
+      "keyCode": "55",
+      "tosKey": "7",
+      "display": "7"
+    },
+    {
+      "keyCode": "56",
+      "tosKey": "8",
+      "display": "8"
+    },
+    {
+      "keyCode": "57",
+      "tosKey": "9",
+      "display": "9"
+    },
+    {
+      "keyCode": "61",
+      "tosKey": "EQUALS",
+      "display": "="
+    },
+    {
+      "keyCode": "65",
+      "tosKey": "A",
+      "display": "A"
+    },
+    {
+      "keyCode": "66",
+      "tosKey": "B",
+      "display": "B"
+    },
+    {
+      "keyCode": "67",
+      "tosKey": "C",
+      "display": "C"
+    },
+    {
+      "keyCode": "68",
+      "tosKey": "D",
+      "display": "D"
+    },
+    {
+      "keyCode": "69",
+      "tosKey": "E",
+      "display": "E"
+    },
+    {
+      "keyCode": "70",
+      "tosKey": "F",
+      "display": "F"
+    },
+    {
+      "keyCode": "71",
+      "tosKey": "G",
+      "display": "G"
+    },
+    {
+      "keyCode": "72",
+      "tosKey": "H",
+      "display": "H"
+    },
+    {
+      "keyCode": "73",
+      "tosKey": "I",
+      "display": "I"
+    },
+    {
+      "keyCode": "74",
+      "tosKey": "J",
+      "display": "J"
+    },
+    {
+      "keyCode": "75",
+      "tosKey": "K",
+      "display": "K"
+    },
+    {
+      "keyCode": "76",
+      "tosKey": "L",
+      "display": "L"
+    },
+    {
+      "keyCode": "77",
+      "tosKey": "M",
+      "display": "M"
+    },
+    {
+      "keyCode": "78",
+      "tosKey": "N",
+      "display": "N"
+    },
+    {
+      "keyCode": "79",
+      "tosKey": "O",
+      "display": "O"
+    },
+    {
+      "keyCode": "80",
+      "tosKey": "P",
+      "display": "P"
+    },
+    {
+      "keyCode": "81",
+      "tosKey": "Q",
+      "display": "Q"
+    },
+    {
+      "keyCode": "82",
+      "tosKey": "R",
+      "display": "R"
+    },
+    {
+      "keyCode": "83",
+      "tosKey": "S",
+      "display": "S"
+    },
+    {
+      "keyCode": "84",
+      "tosKey": "T",
+      "display": "T"
+    },
+    {
+      "keyCode": "85",
+      "tosKey": "U",
+      "display": "U"
+    },
+    {
+      "keyCode": "86",
+      "tosKey": "V",
+      "display": "V"
+    },
+    {
+      "keyCode": "87",
+      "tosKey": "W",
+      "display": "W"
+    },
+    {
+      "keyCode": "88",
+      "tosKey": "X",
+      "display": "X"
+    },
+    {
+      "keyCode": "89",
+      "tosKey": "Y",
+      "display": "Y"
+    },
+    {
+      "keyCode": "90",
+      "tosKey": "Z",
+      "display": "Z"
+    },
+    {
+      "keyCode": "96",
+      "tosKey": "NUMPAD0",
+      "display": "NUMPAD0"
+    },
+    {
+      "keyCode": "97",
+      "tosKey": "NUMPAD1",
+      "display": "NUMPAD1"
+    },
+    {
+      "keyCode": "98",
+      "tosKey": "NUMPAD2",
+      "display": "NUMPAD2"
+    },
+    {
+      "keyCode": "99",
+      "tosKey": "NUMPAD3",
+      "display": "NUMPAD3"
+    },
+    {
+      "keyCode": "100",
+      "tosKey": "NUMPAD4",
+      "display": "NUMPAD4"
+    },
+    {
+      "keyCode": "101",
+      "tosKey": "NUMPAD5",
+      "display": "NUMPAD5"
+    },
+    {
+      "keyCode": "102",
+      "tosKey": "NUMPAD6",
+      "display": "NUMPAD6"
+    },
+    {
+      "keyCode": "103",
+      "tosKey": "NUMPAD7",
+      "display": "NUMPAD7"
+    },
+    {
+      "keyCode": "104",
+      "tosKey": "NUMPAD8",
+      "display": "NUMPAD8"
+    },
+    {
+      "keyCode": "105",
+      "tosKey": "NUMPAD9",
+      "display": "NUMPAD9"
+    },
+    {
+      "keyCode": "107",
+      "tosKey": "ADD",
+      "display": "+"
+    },
+    {
+      "keyCode": "109",
+      "tosKey": "NUMMINUS",
+      "display": "NUMPAD-"
+    },
+    {
+      "keyCode": "112",
+      "tosKey": "F1",
+      "display": "F1"
+    },
+    {
+      "keyCode": "113",
+      "tosKey": "F2",
+      "display": "F2"
+    },
+    {
+      "keyCode": "114",
+      "tosKey": "F3",
+      "display": "F3"
+    },
+    {
+      "keyCode": "115",
+      "tosKey": "F4",
+      "display": "F4"
+    },
+    {
+      "keyCode": "116",
+      "tosKey": "F5",
+      "display": "F5"
+    },
+    {
+      "keyCode": "117",
+      "tosKey": "F6",
+      "display": "F6"
+    },
+    {
+      "keyCode": "118",
+      "tosKey": "F7",
+      "display": "F7"
+    },
+    {
+      "keyCode": "119",
+      "tosKey": "F8",
+      "display": "F8"
+    },
+    {
+      "keyCode": "120",
+      "tosKey": "F9",
+      "display": "F9"
+    },
+    {
+      "keyCode": "121",
+      "tosKey": "F10",
+      "display": "F10"
+    },
+    {
+      "keyCode": "122",
+      "tosKey": "F11",
+      "display": "F11"
+    },
+    {
+      "keyCode": "123",
+      "tosKey": "F12",
+      "display": "F12"
+    },
+    {
+      "keyCode": "130",
+      "tosKey": "LBRACKET",
+      "display": "{"
+    },
+    {
+      "keyCode": "155",
+      "tosKey": "INSERT",
+      "display": "Insert"
+    }
+  ]
+} 
