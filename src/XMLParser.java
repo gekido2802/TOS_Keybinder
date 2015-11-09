@@ -18,30 +18,36 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XMLParser extends DefaultHandler {
+public final class XMLParser extends DefaultHandler {
 
     // FIELDS
+    private static XMLParser instance;
     private List<HotKey> list;
 
     private XMLParser() {
     }
 
+    private static XMLParser getInstance() {
+        return instance != null ? instance : (instance = new XMLParser());
+    }
+
+    // READ ALL HOTKEYS FROM AN XML FILE
     public static List<HotKey> parse(String fileName) {
 
-        XMLParser parser = new XMLParser();
         XMLReader reader;
 
         try {
             reader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            reader.setContentHandler(parser);
+            reader.setContentHandler(getInstance());
             reader.parse(new InputSource(new FileReader(fileName)));
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
 
-        return parser.list;
+        return getInstance().list;
     }
 
+    // SAVE ALL HOTKEYS TO AN XML FILE
     public static boolean save(List<HotKey> hotKeys, String fileName) {
         Document doc;
         Transformer transformer;
