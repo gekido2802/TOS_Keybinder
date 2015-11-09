@@ -13,8 +13,12 @@ public abstract class FrameHelper {
     private static List<HotKey> saveHotKeys, modifiedHotKeys;
     private static JTextField[] inputs;
     private static Set<Integer> keyPressed;
+    private static String fileName;
 
     public static void preBuild() {
+
+        fileName = "./resources/hotkey.xml";
+
         // INITIALIZE KEYPRESSED STACK
         keyPressed = new HashSet<>();
 
@@ -22,7 +26,7 @@ public abstract class FrameHelper {
         converter = new Converter(JSONParser.parse("./resources/keycode.json"));
 
         // PARSE XML FILE
-        saveHotKeys = XMLParser.parse("./resources/hotkey.xml");
+        saveHotKeys = XMLParser.parse(fileName);
         modifiedHotKeys = Utility.copy(saveHotKeys);
 
         // CREATE ARRAY OF JTEXTFIELD TO KEEP TRACK
@@ -143,7 +147,8 @@ public abstract class FrameHelper {
 
         setTextFieldListeners(inputs);
 
-        XMLParser.save(saveHotKeys, "./resources/test.xml");
+        JOptionPane.showMessageDialog(null, XMLParser.save(saveHotKeys, fileName) ?
+                "Control keys have been saved successfully!" : "Control keys couldn't be saved...");
     }
 
     // RESET ALL TEXT BOXES TO LAST SAVE
