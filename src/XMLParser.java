@@ -27,24 +27,22 @@ public final class XMLParser extends DefaultHandler {
     private XMLParser() {
     }
 
-    private static XMLParser getInstance() {
-        return instance != null ? instance : (instance = new XMLParser());
-    }
-
     // READ ALL HOTKEYS FROM AN XML FILE
     public static List<HotKey> parse(String fileName) {
+
+        instance = instance != null ? instance : (instance = new XMLParser());
 
         XMLReader reader;
 
         try {
             reader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            reader.setContentHandler(getInstance());
+            reader.setContentHandler(instance);
             reader.parse(new InputSource(new FileReader(fileName)));
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
 
-        return getInstance().list;
+        return instance.list;
     }
 
     // SAVE ALL HOTKEYS TO AN XML FILE
