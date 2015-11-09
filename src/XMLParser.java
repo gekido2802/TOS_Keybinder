@@ -1,9 +1,7 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.Attributes;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -13,7 +11,6 @@ import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,12 +29,8 @@ public class XMLParser extends DefaultHandler {
 
         instance = instance != null ? instance : (instance = new XMLParser());
 
-        XMLReader reader;
-
         try {
-            reader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            reader.setContentHandler(instance);
-            reader.parse(new InputSource(new FileReader(fileName)));
+            SAXParserFactory.newInstance().newSAXParser().parse(fileName, instance);
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
