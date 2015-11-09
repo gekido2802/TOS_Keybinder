@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class XMLParser extends DefaultHandler {
+public class XMLParser extends DefaultHandler {
 
     // FIELDS
     private static XMLParser instance;
