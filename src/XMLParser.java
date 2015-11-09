@@ -1,12 +1,10 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.xml.sax.Attributes;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -15,27 +13,42 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XMLParser extends DefaultHandler {
-
-    // FIELDS
-    private static XMLParser instance;
-    private List<HotKey> list;
-
-    private XMLParser() {
-    }
+public abstract class XMLParser {
 
     // READ ALL HOTKEYS FROM AN XML FILE
     public static List<HotKey> parse(String fileName) {
-
-        instance = instance != null ? instance : (instance = new XMLParser());
+        Document doc;
+        List<HotKey> hotKeys = new ArrayList<>();
 
         try {
-            SAXParserFactory.newInstance().newSAXParser().parse(fileName, instance);
-        } catch (ParserConfigurationException | SAXException | IOException e) {
+            doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(fileName);
+        } catch (SAXException | IOException | ParserConfigurationException e) {
             e.printStackTrace();
+            return hotKeys;
         }
 
-        return instance.list;
+        doc.getDocumentElement().normalize();
+
+        NodeList nodeList = doc.getElementsByTagName("HotKey");
+
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Element element = (Element) nodeList.item(i);
+            HotKey hotKey = new HotKey();
+
+            hotKey.setId(element.getAttribute("ID"));
+            hotKey.setName(element.getAttribute("Name"));
+            hotKey.setKey(element.getAttribute("Key"));
+            hotKey.setDownScp(element.getAttribute("DownScp"));
+            hotKey.setUpScp(element.getAttribute("UpScp"));
+            hotKey.setUseShift(element.getAttribute("UseShift").equals("YES"));
+            hotKey.setUseAlt(element.getAttribute("UseAlt").equals("YES"));
+            hotKey.setUseCtrl(element.getAttribute("UseCtrl").equals("YES"));
+            hotKey.setOnEdit(element.getAttribute("OnEdit").equals("YES"));
+
+            hotKeys.add(hotKey);
+        }
+
+        return hotKeys;
     }
 
     // SAVE ALL HOTKEYS TO AN XML FILE
@@ -81,59 +94,5 @@ public class XMLParser extends DefaultHandler {
         }
 
         return true;
-    }
-
-    // INITIALIZATION
-    @Override
-    public void startDocument() throws SAXException {
-        list = new ArrayList<>();
-    }
-
-    // BEGINNING TAG
-    @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes)
-            throws SAXException {
-
-        if (!qName.equals("HotKey"))
-            return;
-
-        HotKey hotKey = new HotKey();
-
-        for (int i = 0; i < attributes.getLength(); i++) {
-
-            String value = attributes.getValue(i);
-
-            switch (attributes.getQName(i).toUpperCase()) {
-                case "ID":
-                    hotKey.setId(value);
-                    break;
-                case "NAME":
-                    hotKey.setName(value);
-                    break;
-                case "DOWNSCP":
-                    hotKey.setDownScp(value);
-                    break;
-                case "UPSCP":
-                    hotKey.setUpScp(value);
-                    break;
-                case "KEY":
-                    hotKey.setKey(value);
-                    break;
-                case "USERSHIFT":
-                    hotKey.setUseShift(value.toUpperCase().equals("YES"));
-                    break;
-                case "USEALT":
-                    hotKey.setUseAlt(value.toUpperCase().equals("YES"));
-                    break;
-                case "USECTRL":
-                    hotKey.setUseCtrl(value.toUpperCase().equals("YES"));
-                    break;
-                case "ONEDIT":
-                    hotKey.setOnEdit(value.toUpperCase().equals("YES"));
-                    break;
-            }
-        }
-
-        list.add(hotKey);
     }
 }
