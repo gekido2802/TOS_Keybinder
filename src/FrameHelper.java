@@ -46,6 +46,7 @@ public abstract class FrameHelper {
 
         // CREATE MENU BAR
         JMenuBar menuBar = new JMenuBar();
+        menuBar.setBorder(BorderFactory.createEmptyBorder());
         frame.getContentPane().add(menuBar, BorderLayout.NORTH);
         JMenu menu = new JMenu("File");
         menuBar.add(menu);
