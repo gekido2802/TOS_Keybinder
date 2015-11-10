@@ -67,7 +67,6 @@ public abstract class FrameHelper {
         JMenu menu = new JMenu("File");
         menuBar.add(menu);
         JMenuItem menuItem = new JMenuItem("Quit");
-        menuItem.setIcon(new ImageIcon("./resources/power_off.png"));
         menuItem.addActionListener(e -> System.exit(0));
         menu.add(menuItem);
 
