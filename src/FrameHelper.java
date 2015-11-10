@@ -1,6 +1,8 @@
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -17,7 +19,21 @@ public abstract class FrameHelper {
 
     public static void preBuild() {
 
-        fileName = "./resources/hotkey.xml";
+        fileName = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\TreeOfSavior\\release\\hotkey.xml";
+
+        if (!new File(fileName).exists()) {
+            JOptionPane.showMessageDialog(null, fileName + " couldn't be found.\nPlease indicate the path to the hotkey.xml file.");
+
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            fileChooser.setAcceptAllFileFilterUsed(false);
+            fileChooser.setFileFilter(new FileNameExtensionFilter("XML file", "xml"));
+
+            if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+                fileName = fileChooser.getSelectedFile().getAbsolutePath();
+            else
+                System.exit(0);
+        }
 
         // INITIALIZE KEYPRESSED STACK
         keyPressed = new HashSet<>();

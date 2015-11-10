@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Category>
-    <HotKey DownScp="ui.ProcessReturnKey()" ID="Chat" Key="J" Name="채팅" OnEdit="YES" UpScp="None" UseAlt="YES"
-            UseCtrl="YES" UseShift="NO"/>
+    <HotKey DownScp="ui.ProcessReturnKey()" ID="Chat" Key="M" Name="채팅" OnEdit="YES" UpScp="None" UseAlt="YES"
+            UseCtrl="NO" UseShift="NO"/>
     <HotKey DownScp="ui.ProcessReturnKey()" ID="ChatPad" Key="PADENTER" Name="채팅(패드)" OnEdit="YES" UpScp="None"
             UseAlt="NO" UseCtrl="NO" UseShift="NO"/>
     <HotKey DownScp="UI_TOGGLE_STATUS()" ID="Status" Key="F1" Name="캐릭터" OnEdit="NO" UpScp="None" UseAlt="NO"
