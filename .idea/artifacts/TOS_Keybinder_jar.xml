@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TOS_Keybinder:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TOS_Keybinder_jar</output-path>
+    <root id="archive" name="TOS_Keybinder.jar">
+      <element id="module-output" name="TOS_Keybinder" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/libs/gson-2.4.jar" path-in-jar="/" />
+      <element id="directory" name="resources">
+        <element id="dir-copy" path="$PROJECT_DIR$/resources" />
+      </element>
+    </root>
+  </artifact>
+</component>

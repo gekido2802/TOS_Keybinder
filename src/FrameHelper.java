@@ -3,10 +3,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.jar.JarFile;
 
 public abstract class FrameHelper {
 
@@ -38,8 +40,13 @@ public abstract class FrameHelper {
         // INITIALIZE KEYPRESSED STACK
         keyPressed = new HashSet<>();
 
-        // PARSE JSON FILE
-        converter = new Converter(JSONParser.parse("./resources/keycode.json"));
+        try {
+            JarFile jarFile = new JarFile("TOS_Keybinder.jar");
+            converter = new Converter(JSONParser.parse(jarFile.getInputStream(jarFile.getEntry("resources/keycode.json"))));
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e);
+            System.exit(0);
+        }
 
         // PARSE XML FILE
         saveHotKeys = XMLParser.parse(fileName);
