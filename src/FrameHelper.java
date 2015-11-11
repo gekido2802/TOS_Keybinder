@@ -18,7 +18,7 @@ public abstract class FrameHelper {
     private static final String version = "v1.0";
     private static JTextField edit;
     private static Converter converter;
-    private static List<HotKey> saveHotKeys, modifiedHotKeys;
+    private static List<HotKey> savedHotKeys, modifiedHotKeys;
     private static JTextField[] inputs;
     private static Set<Integer> keyPressed;
     private static String fileName;
@@ -58,16 +58,16 @@ public abstract class FrameHelper {
         try {
             JarFile jarFile = useRelease ? new JarFile("TOS_Keybinder_" + version + ".jar") : new JarFile("TOS_Keybinder.jar");
             converter = new Converter(JSONParser.parse(jarFile.getInputStream(jarFile.getEntry("resources/keycode.json"))));
-            saveHotKeys = XMLParser.parse(Files.newInputStream(Paths.get(fileName)));
+            savedHotKeys = XMLParser.parse(Files.newInputStream(Paths.get(fileName)));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
             System.exit(0);
         }
 
-        modifiedHotKeys = Utility.copy(saveHotKeys);
+        modifiedHotKeys = Utility.copy(savedHotKeys);
 
         // THIS WILL HELP US KEEP TRACK OF THE TEXT BOXES
-        inputs = new JTextField[saveHotKeys.size()];
+        inputs = new JTextField[savedHotKeys.size()];
     }
 
     public static void build(JFrame frame) {
@@ -92,6 +92,8 @@ public abstract class FrameHelper {
             try {
                 Files.copy(Paths.get(fileName + ".bak"), Paths.get(fileName), StandardCopyOption.REPLACE_EXISTING);
                 JOptionPane.showMessageDialog(null, "Back up has been restored successfully!");
+                savedHotKeys = XMLParser.parse(Files.newInputStream(Paths.get(fileName)));
+                reset();
             } catch (IOException e1) {
                 JOptionPane.showMessageDialog(null, e1);
             }
@@ -103,7 +105,7 @@ public abstract class FrameHelper {
 
 
         // CREATE MAIN PANEL WITH A SCROLLBAR
-        JPanel panel = new JPanel(new GridLayout(saveHotKeys.size(), 2, 50, 50));
+        JPanel panel = new JPanel(new GridLayout(savedHotKeys.size(), 2, 50, 50));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.getVerticalScrollBar().setUnitIncrement(20);
@@ -111,16 +113,16 @@ public abstract class FrameHelper {
         frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
 
         // FILL MAIN PANEL
-        for (int i = 0; i < saveHotKeys.size(); i++) {
+        for (int i = 0; i < savedHotKeys.size(); i++) {
             // CREATE ID'S TEXT BOX
-            JTextField textField = new JTextField(saveHotKeys.get(i).getId());
+            JTextField textField = new JTextField(savedHotKeys.get(i).getId());
             textField.setPreferredSize(new Dimension(75, 25));
             textField.setEditable(false);
             textField.setHorizontalAlignment(JLabel.CENTER);
             panel.add(textField);
 
             // CREATE KEY'S TEXT BOX
-            textField = new JTextField(Utility.format(converter, saveHotKeys.get(i)));
+            textField = new JTextField();
             textField.setHorizontalAlignment(JLabel.CENTER);
             textField.setEditable(false);
             textField.setFocusTraversalKeysEnabled(false);
@@ -156,12 +158,16 @@ public abstract class FrameHelper {
 
         frame.getContentPane().add(panel, BorderLayout.SOUTH);
 
-        validation();
-
         // SET FRAME CONFIGURATION
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+        postBuild();
+    }
+
+    private static void postBuild() {
+        reset();
     }
 
     private static void setTextFieldListeners(JTextField[] textFields) {
@@ -194,8 +200,8 @@ public abstract class FrameHelper {
 
     // SAVE CURRENT SETTINGS INTO XML FILE
     private static void save() {
-        saveHotKeys = modifiedHotKeys;
-        modifiedHotKeys = Utility.copy(saveHotKeys);
+        savedHotKeys = modifiedHotKeys;
+        modifiedHotKeys = Utility.copy(savedHotKeys);
 
         setTextFieldListeners(inputs);
 
@@ -205,7 +211,7 @@ public abstract class FrameHelper {
         }
 
         try {
-            JOptionPane.showMessageDialog(null, XMLParser.save(saveHotKeys, Files.newOutputStream(Paths.get(fileName))) ?
+            JOptionPane.showMessageDialog(null, XMLParser.save(savedHotKeys, Files.newOutputStream(Paths.get(fileName))) ?
                     "Control keys have been saved successfully!" : "Control keys couldn't be saved...");
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e);
@@ -215,10 +221,10 @@ public abstract class FrameHelper {
     // RESET ALL TEXT BOXES TO LAST SAVE
     private static void reset() {
 
-        modifiedHotKeys = Utility.copy(saveHotKeys);
+        modifiedHotKeys = Utility.copy(savedHotKeys);
 
-        for (int i = 0; i < saveHotKeys.size(); i++) {
-            inputs[i].setText(Utility.format(converter, saveHotKeys.get(i)));
+        for (int i = 0; i < savedHotKeys.size(); i++) {
+            inputs[i].setText(Utility.format(converter, savedHotKeys.get(i)));
         }
 
         validation();
