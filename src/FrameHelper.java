@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -121,7 +120,7 @@ public abstract class FrameHelper {
             panel.add(textField);
 
             // CREATE KEY'S TEXT BOX
-            textField = new JTextField(Utility.format(saveHotKeys.get(i)));
+            textField = new JTextField(Utility.format(converter, saveHotKeys.get(i)));
             textField.setHorizontalAlignment(JLabel.CENTER);
             textField.setEditable(false);
             textField.setFocusTraversalKeysEnabled(false);
@@ -219,7 +218,7 @@ public abstract class FrameHelper {
         modifiedHotKeys = Utility.copy(saveHotKeys);
 
         for (int i = 0; i < saveHotKeys.size(); i++) {
-            inputs[i].setText(Utility.format(saveHotKeys.get(i)));
+            inputs[i].setText(Utility.format(converter, saveHotKeys.get(i)));
         }
 
         validation();
@@ -229,21 +228,15 @@ public abstract class FrameHelper {
         if (edit != null) {
             keyPressed.add(keyCode);
 
-            if (!isControlKey(keyCode)) {
+            if (!Utility.isControlKey(keyCode)) {
                 hotKey.setKey(converter.fromKeyCodeToTOSKey(keyCode)).setUseShift(keyPressed.contains(KeyEvent.VK_SHIFT))
                         .setUseCtrl(keyPressed.contains(KeyEvent.VK_CONTROL)).setUseAlt(keyPressed.contains(KeyEvent.VK_ALT));
 
-                edit.setText(Utility.format(keyPressed));
+                edit.setText(Utility.format(converter, keyPressed));
                 edit = null;
                 keyPressed = new HashSet<>();
             }
         }
-    }
-
-
-
-    private static boolean isControlKey(int keyCode) {
-        return Arrays.asList(KeyEvent.VK_SHIFT, KeyEvent.VK_CONTROL, KeyEvent.VK_ALT).indexOf(keyCode) != -1;
     }
 
     private static void validation() {
@@ -265,9 +258,5 @@ public abstract class FrameHelper {
                 }
             }
         }
-    }
-
-    private static JFrame reset(JFrame frame) {
-        return frame = new JFrame();
     }
 }
