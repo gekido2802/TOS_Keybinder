@@ -14,8 +14,8 @@ import java.util.jar.JarFile;
 
 public abstract class FrameHelper {
 
-    private static final boolean useRelease = false;
-    private static final String version = "1.0";
+    private static final boolean useRelease = true;
+    private static final String version = "v1.0";
     private static JTextField edit;
     private static Converter converter;
     private static List<HotKey> saveHotKeys, modifiedHotKeys;
