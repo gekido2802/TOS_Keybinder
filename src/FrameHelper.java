@@ -20,6 +20,7 @@ public abstract class FrameHelper {
     private static JTextField[] inputs;
     private static Set<Integer> keyPressed;
     private static String fileName;
+    private static boolean conflict;
 
     public static void preBuild() {
 
@@ -100,6 +101,7 @@ public abstract class FrameHelper {
 
             // CREATE KEY'S TEXT BOX
             textField = new JTextField(format(saveHotKeys.get(i)));
+            textField.setHorizontalAlignment(JLabel.CENTER);
             textField.setEditable(false);
             textField.setFocusTraversalKeysEnabled(false);
             textField.addMouseListener(new MouseAdapter() {
@@ -134,6 +136,8 @@ public abstract class FrameHelper {
 
         frame.getContentPane().add(panel, BorderLayout.SOUTH);
 
+        validation(inputs);
+
         // SET FRAME CONFIGURATION
         frame.pack();
         frame.setLocationRelativeTo(null);
@@ -154,6 +158,8 @@ public abstract class FrameHelper {
                 @Override
                 public void keyPressed(KeyEvent e) {
                     setKey(hotKey, e.getKeyCode());
+
+                    validation(textFields);
                 }
 
                 @Override
@@ -172,6 +178,11 @@ public abstract class FrameHelper {
         modifiedHotKeys = Utility.copy(saveHotKeys);
 
         setTextFieldListeners(inputs);
+
+        if (conflict) {
+            JOptionPane.showMessageDialog(null, "There's some duplicated keys.\nPlease verify and save again.");
+            return;
+        }
 
         try {
             JOptionPane.showMessageDialog(null, XMLParser.save(saveHotKeys, Files.newOutputStream(Paths.get(fileName))) ?
@@ -222,5 +233,26 @@ public abstract class FrameHelper {
 
     private static boolean isControlKey(int keyCode) {
         return Arrays.asList(KeyEvent.VK_SHIFT, KeyEvent.VK_CONTROL, KeyEvent.VK_ALT).indexOf(keyCode) != -1;
+    }
+
+    private static void validation(JTextField[] textFields) {
+        conflict = false;
+
+        for (JTextField j : textFields) {
+            j.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+        }
+
+        for (JTextField j : textFields) {
+            for (JTextField j2 : textFields) {
+                if (j == j2)
+                    continue;
+
+                if (j.getText().equals(j2.getText())) {
+                    j.setBorder(BorderFactory.createLineBorder(Color.red));
+                    j2.setBorder(BorderFactory.createLineBorder(Color.red));
+                    conflict = true;
+                }
+            }
+        }
     }
 }
