@@ -8,9 +8,8 @@ import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.jar.JarFile;
 
 public abstract class FrameHelper {
@@ -20,7 +19,7 @@ public abstract class FrameHelper {
     private static Converter converter;
     private static List<HotKey> savedHotKeys, modifiedHotKeys;
     private static JTextField[] inputs;
-    private static Set<Integer> keyPressed;
+    private static List<Integer> keyPressed;
     private static String fileName;
     private static boolean conflict;
 
@@ -52,7 +51,7 @@ public abstract class FrameHelper {
         }
 
         // INITIALIZE KEY PRESSED STACK
-        keyPressed = new HashSet<>();
+        keyPressed = new ArrayList<>();
 
         // PARSING FILES
         try {
@@ -187,7 +186,7 @@ public abstract class FrameHelper {
                 @Override
                 public void keyReleased(KeyEvent e) {
                     if (edit != null) {
-                        keyPressed = new HashSet<>();
+                        keyPressed = new ArrayList<>();
                     }
                 }
             });
@@ -219,6 +218,8 @@ public abstract class FrameHelper {
 
         modifiedHotKeys = Utility.copy(savedHotKeys);
 
+        setTextFieldListeners(inputs);
+
         for (int i = 0; i < savedHotKeys.size(); i++) {
             inputs[i].setText(Utility.format(converter, savedHotKeys.get(i)));
         }
@@ -231,12 +232,13 @@ public abstract class FrameHelper {
             keyPressed.add(keyCode);
 
             if (!Utility.isControlKey(keyCode)) {
+
                 hotKey.setKey(converter.fromKeyCodeToTOSKey(keyCode)).setUseShift(keyPressed.contains(KeyEvent.VK_SHIFT))
                         .setUseCtrl(keyPressed.contains(KeyEvent.VK_CONTROL)).setUseAlt(keyPressed.contains(KeyEvent.VK_ALT));
 
                 edit.setText(Utility.format(converter, keyPressed));
                 edit = null;
-                keyPressed = new HashSet<>();
+                keyPressed = new ArrayList<>();
             }
         }
     }

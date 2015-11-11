@@ -2,7 +2,6 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 public class Utility {
 
@@ -33,14 +32,8 @@ public class Utility {
         return (hotKey.useCtrl() ? "Ctrl + " : "") + (hotKey.useAlt() ? "Alt + " : "") + (hotKey.useShift() ? "Shift + " : "") + converter.fromTOSKeyToDisplay(hotKey.getKey());
     }
 
-    public static String format(Converter converter, Set<Integer> set) {
-        int key = 0;
-
-        for (Integer i : set) {
-            key = i;
-        }
-
-        return (set.contains(KeyEvent.VK_CONTROL) ? "Ctrl + " : "") + (set.contains(KeyEvent.VK_ALT) ? "Alt + " : "") + (set.contains(KeyEvent.VK_SHIFT) ? "Shift + " : "") + converter.fromKeyCodeToDisplay(key);
+    public static String format(Converter converter, List<Integer> list) {
+        return (list.contains(KeyEvent.VK_CONTROL) ? "Ctrl + " : "") + (list.contains(KeyEvent.VK_ALT) ? "Alt + " : "") + (list.contains(KeyEvent.VK_SHIFT) ? "Shift + " : "") + converter.fromKeyCodeToDisplay(list.get(list.size() - 1));
     }
 
     public static boolean isControlKey(int keyCode) {
