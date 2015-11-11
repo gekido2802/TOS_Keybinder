@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.jar.JarFile;
 
 public abstract class FrameHelper {
 
-    private static final boolean useRelease = true;
+    private static final boolean useRelease = false;
     private static final String version = "v1.0";
     private static JTextField edit;
     private static Converter converter;
@@ -41,6 +42,14 @@ public abstract class FrameHelper {
                 fileName = fileChooser.getSelectedFile().getAbsolutePath();
             else
                 System.exit(0);
+        }
+
+        // CREATE BACKUP
+        try {
+            if (!new File(fileName + ".bak").exists())
+                Files.copy(Paths.get(fileName), Paths.get(fileName + ".bak"));
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
 
         // INITIALIZE KEY PRESSED STACK
@@ -79,7 +88,17 @@ public abstract class FrameHelper {
         frame.getContentPane().add(menuBar, BorderLayout.NORTH);
         JMenu menu = new JMenu("File");
         menuBar.add(menu);
-        JMenuItem menuItem = new JMenuItem("Quit");
+        JMenuItem menuItem = new JMenuItem("Restore Backup");
+        menuItem.addActionListener(e -> {
+            try {
+                Files.copy(Paths.get(fileName + ".bak"), Paths.get(fileName), StandardCopyOption.REPLACE_EXISTING);
+                JOptionPane.showMessageDialog(null, "Back up has been restored successfully!");
+            } catch (IOException e1) {
+                JOptionPane.showMessageDialog(null, e1);
+            }
+        });
+        menu.add(menuItem);
+        menuItem = new JMenuItem("Quit");
         menuItem.addActionListener(e -> System.exit(0));
         menu.add(menuItem);
 
@@ -258,5 +277,9 @@ public abstract class FrameHelper {
                 }
             }
         }
+    }
+
+    private static JFrame reset(JFrame frame) {
+        return frame = new JFrame();
     }
 }
