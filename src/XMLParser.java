@@ -8,9 +8,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +53,7 @@ public abstract class XMLParser {
     }
 
     // SAVE ALL HOTKEYS TO AN XML FILE
-    public static boolean save(List<HotKey> hotKeys, String fileName) {
+    public static boolean save(List<HotKey> hotKeys, OutputStream outputStream) {
         Document doc;
         Transformer transformer;
 
@@ -88,7 +88,7 @@ public abstract class XMLParser {
         }
 
         try {
-            transformer.transform(new DOMSource(doc), new StreamResult(new File(fileName)));
+            transformer.transform(new DOMSource(doc), new StreamResult(outputStream));
         } catch (TransformerException e) {
             e.printStackTrace();
             return false;

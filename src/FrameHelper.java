@@ -3,6 +3,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -24,6 +25,7 @@ public abstract class FrameHelper {
 
         fileName = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\TreeOfSavior\\release\\hotkey.xml";
 
+        // TRY TO OPEN DEFAULT LOCATION OTHERWISE IT WILL ASK FOR FILE'S LOCATION
         if (!new File(fileName).exists()) {
             JOptionPane.showMessageDialog(null, fileName + " couldn't be found.\nPlease indicate the path to the hotkey.xml file.");
 
@@ -171,8 +173,12 @@ public abstract class FrameHelper {
 
         setTextFieldListeners(inputs);
 
-        JOptionPane.showMessageDialog(null, XMLParser.save(saveHotKeys, fileName) ?
-                "Control keys have been saved successfully!" : "Control keys couldn't be saved...");
+        try {
+            JOptionPane.showMessageDialog(null, XMLParser.save(saveHotKeys, Files.newOutputStream(Paths.get(fileName))) ?
+                    "Control keys have been saved successfully!" : "Control keys couldn't be saved...");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
     // RESET ALL TEXT BOXES TO LAST SAVE
