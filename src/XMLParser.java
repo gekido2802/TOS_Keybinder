@@ -10,18 +10,19 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class XMLParser {
 
     // READ ALL HOTKEYS FROM AN XML FILE
-    public static List<HotKey> parse(String fileName) {
+    public static List<HotKey> parse(InputStream inputStream) {
         Document doc;
         List<HotKey> hotKeys = new ArrayList<>();
 
         try {
-            doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(fileName);
+            doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(inputStream);
         } catch (SAXException | IOException | ParserConfigurationException e) {
             e.printStackTrace();
             return hotKeys;

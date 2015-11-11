@@ -3,7 +3,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -29,7 +30,7 @@ public abstract class FrameHelper {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             fileChooser.setAcceptAllFileFilterUsed(false);
-            fileChooser.setFileFilter(new FileNameExtensionFilter("XML file", "xml"));
+            fileChooser.setFileFilter(new FileNameExtensionFilter("XML files", "xml"));
 
             if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
                 fileName = fileChooser.getSelectedFile().getAbsolutePath();
@@ -40,16 +41,16 @@ public abstract class FrameHelper {
         // INITIALIZE KEYPRESSED STACK
         keyPressed = new HashSet<>();
 
+        // PARSING FILES
         try {
             JarFile jarFile = new JarFile("TOS_Keybinder.jar");
             converter = new Converter(JSONParser.parse(jarFile.getInputStream(jarFile.getEntry("resources/keycode.json"))));
-        } catch (IOException e) {
+            saveHotKeys = XMLParser.parse(Files.newInputStream(Paths.get(fileName)));
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
             System.exit(0);
         }
 
-        // PARSE XML FILE
-        saveHotKeys = XMLParser.parse(fileName);
         modifiedHotKeys = Utility.copy(saveHotKeys);
 
         // CREATE ARRAY OF JTEXTFIELD TO KEEP TRACK
