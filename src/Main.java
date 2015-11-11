@@ -11,7 +11,9 @@ public class Main {
                 e.printStackTrace();
             }
 
+            FrameHelper.preBuild();
             FrameHelper.build(new JFrame());
+            FrameHelper.postBuild();
         });
     }
 }

@@ -72,8 +72,6 @@ public abstract class FrameHelper {
 
     public static void build(JFrame frame) {
 
-        preBuild();
-
         // SET FRAME CONFIGURATION
         frame.setTitle("TOS Keybinder");
         frame.setResizable(false);
@@ -162,11 +160,9 @@ public abstract class FrameHelper {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
-        postBuild();
     }
 
-    private static void postBuild() {
+    public static void postBuild() {
         reset();
     }
 
@@ -206,7 +202,7 @@ public abstract class FrameHelper {
         setTextFieldListeners(inputs);
 
         if (conflict) {
-            JOptionPane.showMessageDialog(null, "There's some duplicated keys.\nPlease verify and save again.");
+            JOptionPane.showMessageDialog(null, "There are some duplicated keys.\nPlease verify and save again.");
             return;
         }
 
