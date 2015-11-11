@@ -1,7 +1,10 @@
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Utility {
+
     public static List<HotKey> copy(List<HotKey> hotKeys) {
         List<HotKey> copiedList = new ArrayList<>();
 
@@ -23,5 +26,19 @@ public class Utility {
         }
 
         return copiedList;
+    }
+
+    public static String format(HotKey hotKey) {
+        return (hotKey.useCtrl() ? "Ctrl + " : "") + (hotKey.useAlt() ? "Alt + " : "") + (hotKey.useShift() ? "Shift + " : "") + converter.fromTOSKeyToDisplay(hotKey.getKey());
+    }
+
+    public static String format(Set<Integer> set) {
+        int key = 0;
+
+        for (Integer i : set) {
+            key = i;
+        }
+
+        return (set.contains(KeyEvent.VK_CONTROL) ? "Ctrl + " : "") + (set.contains(KeyEvent.VK_ALT) ? "Alt + " : "") + (set.contains(KeyEvent.VK_SHIFT) ? "Shift + " : "") + converter.fromKeyCodeToDisplay(key);
     }
 }

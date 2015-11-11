@@ -121,7 +121,7 @@ public abstract class FrameHelper {
             panel.add(textField);
 
             // CREATE KEY'S TEXT BOX
-            textField = new JTextField(format(saveHotKeys.get(i)));
+            textField = new JTextField(Utility.format(saveHotKeys.get(i)));
             textField.setHorizontalAlignment(JLabel.CENTER);
             textField.setEditable(false);
             textField.setFocusTraversalKeysEnabled(false);
@@ -219,7 +219,7 @@ public abstract class FrameHelper {
         modifiedHotKeys = Utility.copy(saveHotKeys);
 
         for (int i = 0; i < saveHotKeys.size(); i++) {
-            inputs[i].setText(format(saveHotKeys.get(i)));
+            inputs[i].setText(Utility.format(saveHotKeys.get(i)));
         }
 
         validation();
@@ -233,26 +233,14 @@ public abstract class FrameHelper {
                 hotKey.setKey(converter.fromKeyCodeToTOSKey(keyCode)).setUseShift(keyPressed.contains(KeyEvent.VK_SHIFT))
                         .setUseCtrl(keyPressed.contains(KeyEvent.VK_CONTROL)).setUseAlt(keyPressed.contains(KeyEvent.VK_ALT));
 
-                edit.setText(format(keyPressed));
+                edit.setText(Utility.format(keyPressed));
                 edit = null;
                 keyPressed = new HashSet<>();
             }
         }
     }
 
-    private static String format(HotKey hotKey) {
-        return (hotKey.useCtrl() ? "Ctrl + " : "") + (hotKey.useAlt() ? "Alt + " : "") + (hotKey.useShift() ? "Shift + " : "") + converter.fromTOSKeyToDisplay(hotKey.getKey());
-    }
 
-    private static String format(Set<Integer> set) {
-        int key = 0;
-
-        for (Integer i : set) {
-            key = i;
-        }
-
-        return (set.contains(KeyEvent.VK_CONTROL) ? "Ctrl + " : "") + (set.contains(KeyEvent.VK_ALT) ? "Alt + " : "") + (set.contains(KeyEvent.VK_SHIFT) ? "Shift + " : "") + converter.fromKeyCodeToDisplay(key);
-    }
 
     private static boolean isControlKey(int keyCode) {
         return Arrays.asList(KeyEvent.VK_SHIFT, KeyEvent.VK_CONTROL, KeyEvent.VK_ALT).indexOf(keyCode) != -1;
