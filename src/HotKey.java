@@ -12,7 +12,7 @@ public class HotKey {
     private boolean onEdit;
 
 
-    // CONTRUCTORS
+    // CONSTRUCTORS
     public HotKey() {
     }
 

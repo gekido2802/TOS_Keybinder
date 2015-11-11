@@ -41,7 +41,7 @@ public abstract class FrameHelper {
                 System.exit(0);
         }
 
-        // INITIALIZE KEYPRESSED STACK
+        // INITIALIZE KEY PRESSED STACK
         keyPressed = new HashSet<>();
 
         // PARSING FILES
@@ -56,7 +56,7 @@ public abstract class FrameHelper {
 
         modifiedHotKeys = Utility.copy(saveHotKeys);
 
-        // CREATE ARRAY OF JTEXTFIELD TO KEEP TRACK
+        // THIS WILL HELP US KEEP TRACK OF THE TEXT BOXES
         inputs = new JTextField[saveHotKeys.size()];
     }
 
