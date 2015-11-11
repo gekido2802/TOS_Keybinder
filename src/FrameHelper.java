@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -14,7 +15,6 @@ import java.util.jar.JarFile;
 
 public abstract class FrameHelper {
 
-    private static final boolean useRelease = false;
     private static final String version = "v1.0";
     private static JTextField edit;
     private static Converter converter;
@@ -56,7 +56,7 @@ public abstract class FrameHelper {
 
         // PARSING FILES
         try {
-            JarFile jarFile = useRelease ? new JarFile("TOS_Keybinder_" + version + ".jar") : new JarFile("TOS_Keybinder.jar");
+            JarFile jarFile = new JarFile(URLDecoder.decode(FrameHelper.class.getProtectionDomain().getCodeSource().getLocation().getPath(), "UTF-8"));
             converter = new Converter(JSONParser.parse(jarFile.getInputStream(jarFile.getEntry("resources/keycode.json"))));
             savedHotKeys = XMLParser.parse(Files.newInputStream(Paths.get(fileName)));
         } catch (Exception e) {
@@ -73,7 +73,7 @@ public abstract class FrameHelper {
     public static void build(JFrame frame) {
 
         // SET FRAME CONFIGURATION
-        frame.setTitle("TOS Keybinder");
+        frame.setTitle("TOS Keybinder " + version);
         frame.setResizable(false);
         frame.setLayout(new BorderLayout(0, 0));
         frame.setPreferredSize(new Dimension(350, 600));
