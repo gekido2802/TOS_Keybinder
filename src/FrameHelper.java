@@ -14,6 +14,8 @@ import java.util.jar.JarFile;
 
 public abstract class FrameHelper {
 
+    private static final boolean useRelease = false;
+    private static final String version = "1.0";
     private static JTextField edit;
     private static Converter converter;
     private static List<HotKey> saveHotKeys, modifiedHotKeys;
@@ -46,7 +48,7 @@ public abstract class FrameHelper {
 
         // PARSING FILES
         try {
-            JarFile jarFile = new JarFile("TOS_Keybinder.jar");
+            JarFile jarFile = useRelease ? new JarFile("TOS_Keybinder_" + version + ".jar") : new JarFile("TOS_Keybinder.jar");
             converter = new Converter(JSONParser.parse(jarFile.getInputStream(jarFile.getEntry("resources/keycode.json"))));
             saveHotKeys = XMLParser.parse(Files.newInputStream(Paths.get(fileName)));
         } catch (Exception e) {
