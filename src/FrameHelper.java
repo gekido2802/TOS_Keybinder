@@ -136,7 +136,7 @@ public abstract class FrameHelper {
 
         frame.getContentPane().add(panel, BorderLayout.SOUTH);
 
-        validation(inputs);
+        validation();
 
         // SET FRAME CONFIGURATION
         frame.pack();
@@ -159,7 +159,7 @@ public abstract class FrameHelper {
                 public void keyPressed(KeyEvent e) {
                     setKey(hotKey, e.getKeyCode());
 
-                    validation(textFields);
+                    validation();
                 }
 
                 @Override
@@ -200,6 +200,8 @@ public abstract class FrameHelper {
         for (int i = 0; i < saveHotKeys.size(); i++) {
             inputs[i].setText(format(saveHotKeys.get(i)));
         }
+
+        validation();
     }
 
     private static void setKey(HotKey hotKey, int keyCode) {
@@ -235,15 +237,15 @@ public abstract class FrameHelper {
         return Arrays.asList(KeyEvent.VK_SHIFT, KeyEvent.VK_CONTROL, KeyEvent.VK_ALT).indexOf(keyCode) != -1;
     }
 
-    private static void validation(JTextField[] textFields) {
+    private static void validation() {
         conflict = false;
 
-        for (JTextField j : textFields) {
+        for (JTextField j : inputs) {
             j.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
         }
 
-        for (JTextField j : textFields) {
-            for (JTextField j2 : textFields) {
+        for (JTextField j : inputs) {
+            for (JTextField j2 : inputs) {
                 if (j == j2)
                     continue;
 
