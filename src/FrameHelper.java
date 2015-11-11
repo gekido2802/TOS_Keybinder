@@ -119,18 +119,19 @@ public abstract class FrameHelper {
             panel.add(textField);
 
             // CREATE KEY'S TEXT BOX
-            textField = new JTextField();
+            inputs[i] = textField = new JTextField();
             textField.setHorizontalAlignment(JLabel.CENTER);
             textField.setEditable(false);
             textField.setFocusTraversalKeysEnabled(false);
             textField.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    edit = ((JTextField) e.getSource());
-                    edit.setText("Press Key...");
+                    if (edit == null) {
+                        edit = ((JTextField) e.getSource());
+                        edit.setText("Press Key...");
+                    }
                 }
             });
-            inputs[i] = textField;
             panel.add(textField);
         }
 
@@ -236,9 +237,10 @@ public abstract class FrameHelper {
                 hotKey.setKey(converter.fromKeyCodeToTOSKey(keyCode)).setUseShift(keyPressed.contains(KeyEvent.VK_SHIFT))
                         .setUseCtrl(keyPressed.contains(KeyEvent.VK_CONTROL)).setUseAlt(keyPressed.contains(KeyEvent.VK_ALT));
 
-                edit.setText(Utility.format(converter, keyPressed));
-                edit = null;
                 keyPressed = new ArrayList<>();
+
+                edit.setText(Utility.format(converter, hotKey));
+                edit = null;
             }
         }
     }
