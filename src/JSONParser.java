@@ -37,6 +37,7 @@ public abstract class JSONParser {
         return set;
     }
 
+    // PARSE THE TOS KEY ID JSON FILE
     public static void parseTOSKeyId(InputStream inputStream) {
         keys = new HashMap<>();
 
@@ -51,6 +52,7 @@ public abstract class JSONParser {
         }
     }
 
+    // RETURN ALL THE TOS KEY ID
     public static Map<String, String> getKeys() {
         return keys;
     }

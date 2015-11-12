@@ -51,7 +51,15 @@ public abstract class XMLParser {
             hotKeys.add(hotKey);
         }
 
-        Collections.sort(hotKeys);
+        Collections.sort(hotKeys, (o1, o2) -> {
+            String a = JSONParser.getKeys().get(o1.getId()), b = JSONParser.getKeys().get(o2.getId());
+
+            if (a == null || b == null)
+                return o1.getId().compareTo(o2.getId());
+            else
+                return JSONParser.getKeys().get(o1.getId()).compareTo(JSONParser.getKeys().get(o2.getId()));
+        });
+
         return hotKeys;
     }
 

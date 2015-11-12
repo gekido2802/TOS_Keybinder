@@ -28,7 +28,7 @@ public class Converter {
             if (s[0].equals(key))
                 return s[2];
 
-        return "Key Not Supported...";
+        return null;
     }
 
     // CONVERT A TOS KEY TO ITS DISPLAY VALUE

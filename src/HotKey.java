@@ -1,4 +1,4 @@
-public class HotKey implements Comparable<HotKey> {
+public class HotKey {
 
     // FIELDS
     private String id;
@@ -119,17 +119,6 @@ public class HotKey implements Comparable<HotKey> {
         result = 31 * result + (useCtrl ? 1 : 0);
         result = 31 * result + (onEdit ? 1 : 0);
         return result;
-    }
-
-    @Override
-    public int compareTo(HotKey o) {
-
-        String a = JSONParser.getKeys().get(this.id), b = JSONParser.getKeys().get(o.id);
-
-        if (a == null || b == null)
-            return this.id.compareTo(o.id);
-        else
-            return JSONParser.getKeys().get(this.id).compareTo(JSONParser.getKeys().get(o.id));
     }
 
     @Override
