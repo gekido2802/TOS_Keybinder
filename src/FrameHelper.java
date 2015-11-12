@@ -22,6 +22,7 @@ public abstract class FrameHelper {
     private static String fileName;
     private static boolean conflict;
 
+    // INITIALIZATION
     public static void preBuild() {
 
         fileName = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\TreeOfSavior\\release\\hotkey.xml";
@@ -68,6 +69,7 @@ public abstract class FrameHelper {
         inputs = new JTextField[savedHotKeys.size()];
     }
 
+    // BUILD THE FRAME
     public static void build(JFrame frame) {
 
         // SET FRAME CONFIGURATION
@@ -134,7 +136,7 @@ public abstract class FrameHelper {
             panel.add(textField);
         }
 
-        setTextFieldListeners(inputs);
+        setTextFieldKeyListeners(inputs);
 
 
         // CREATE BUTTON PANEL
@@ -161,11 +163,13 @@ public abstract class FrameHelper {
         frame.setVisible(true);
     }
 
+    // SET VALUES TO COMPONENTS
     public static void postBuild() {
         reset();
     }
 
-    private static void setTextFieldListeners(JTextField[] textFields) {
+    // SET THE KEY LISTENERS TO THE JTEXTFIELD
+    private static void setTextFieldKeyListeners(JTextField[] textFields) {
 
         for (int i = 0; i < textFields.length; i++) {
             JTextField textField = textFields[i];
@@ -198,7 +202,7 @@ public abstract class FrameHelper {
         savedHotKeys = modifiedHotKeys;
         modifiedHotKeys = Utility.copy(savedHotKeys);
 
-        setTextFieldListeners(inputs);
+        setTextFieldKeyListeners(inputs);
 
         if (conflict) {
             JOptionPane.showMessageDialog(null, "There are some duplicated keys.\nPlease verify and save again.");
@@ -218,7 +222,7 @@ public abstract class FrameHelper {
 
         modifiedHotKeys = Utility.copy(savedHotKeys);
 
-        setTextFieldListeners(inputs);
+        setTextFieldKeyListeners(inputs);
 
         for (int i = 0; i < savedHotKeys.size(); i++) {
             inputs[i].setText(Utility.format(converter, savedHotKeys.get(i)));
@@ -227,6 +231,7 @@ public abstract class FrameHelper {
         validation();
     }
 
+    // SET A HOTKEY USING THE KEYCODE
     private static void setKey(HotKey hotKey, int keyCode) {
         if (edit != null) {
             keyPressed.add(keyCode);
@@ -244,6 +249,7 @@ public abstract class FrameHelper {
         }
     }
 
+    // VALIDATE IF MULTIPLE KEYS ARE THE SAME
     private static void validation() {
         conflict = false;
 

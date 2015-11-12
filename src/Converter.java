@@ -8,6 +8,7 @@ public class Converter {
         this.set = set;
     }
 
+    // CONVERT A KEYCODE TO ITS TOS KEY VALUE
     public String fromKeyCodeToTOSKey(int keyCode) {
         String key = "" + keyCode;
 
@@ -19,6 +20,7 @@ public class Converter {
         return null;
     }
 
+    // CONVERT A KEY CODE TO ITS DISPLAY VALUE
     public String fromKeyCodeToDisplay(int keyCode) {
         String key = "" + keyCode;
 
@@ -29,6 +31,7 @@ public class Converter {
         return "Key Not Supported...";
     }
 
+    // CONVERT A TOS KEY TO ITS DISPLAY VALUE
     public String fromTOSKeyToDisplay(String tosKey) {
         for (String[] s : set) {
             if (s[1].equals(tosKey))

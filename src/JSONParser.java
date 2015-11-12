@@ -9,6 +9,7 @@ import java.util.Set;
 
 public abstract class JSONParser {
 
+    // PARSE THE KEYCODE JSON FILE
     public static Set<String[]> parse(InputStream inputStream) {
         Set<String[]> set = new HashSet<>();
 
