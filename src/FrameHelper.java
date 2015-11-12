@@ -13,7 +13,7 @@ import java.util.jar.JarFile;
 
 public abstract class FrameHelper {
 
-    private static final String version = "v1.0";
+    private static final String version = "v1.0 [Beta]";
     private static JTextField edit;
     private static Converter converter;
     private static List<HotKey> savedHotKeys, modifiedHotKeys;
