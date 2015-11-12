@@ -20,17 +20,6 @@ public class Converter {
         return null;
     }
 
-    // CONVERT A KEY CODE TO ITS DISPLAY VALUE
-    public String fromKeyCodeToDisplay(int keyCode) {
-        String key = "" + keyCode;
-
-        for (String[] s : set)
-            if (s[0].equals(key))
-                return s[2];
-
-        return null;
-    }
-
     // CONVERT A TOS KEY TO ITS DISPLAY VALUE
     public String fromTOSKeyToDisplay(String tosKey) {
         for (String[] s : set) {
@@ -41,6 +30,7 @@ public class Converter {
         return null;
     }
 
+    // CONVERT A TOS KEY TO ITS KEYCODE
     public int fromTOSKEYToKeyCode(String tosKey) {
         for (String[] s : set) {
             if (s[1].equals(tosKey))
