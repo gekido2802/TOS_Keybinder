@@ -3,6 +3,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import javax.swing.*;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
@@ -19,14 +20,14 @@ public abstract class XMLParser {
 
     // READ ALL HOTKEYS FROM AN XML FILE
     public static List<HotKey> parse(InputStream inputStream) {
-        Document doc;
+        Document doc = null;
         List<HotKey> hotKeys = new ArrayList<>();
 
         try {
             doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(inputStream);
         } catch (SAXException | IOException | ParserConfigurationException e) {
-            e.printStackTrace();
-            return hotKeys;
+            JOptionPane.showMessageDialog(null, e);
+            System.exit(0);
         }
 
         doc.getDocumentElement().normalize();
@@ -63,18 +64,17 @@ public abstract class XMLParser {
             doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
             transformer = TransformerFactory.newInstance().newTransformer();
         } catch (ParserConfigurationException | TransformerConfigurationException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e);
             return false;
         }
 
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 
-        Element root = doc.createElement("Category");
-        doc.appendChild(root);
+        Element root = (Element) doc.appendChild(doc.createElement("Category"));
 
         for (HotKey h : hotKeys) {
-            Element hotkey = doc.createElement("HotKey");
+            Element hotkey = (Element) root.appendChild(doc.createElement("HotKey"));
 
             hotkey.setAttribute("ID", h.getId());
             hotkey.setAttribute("Name", h.getName());
@@ -85,14 +85,12 @@ public abstract class XMLParser {
             hotkey.setAttribute("UseAlt", h.useAlt() ? "YES" : "NO");
             hotkey.setAttribute("UseCtrl", h.useCtrl() ? "YES" : "NO");
             hotkey.setAttribute("OnEdit", h.isOnEdit() ? "YES" : "NO");
-
-            root.appendChild(hotkey);
         }
 
         try {
             transformer.transform(new DOMSource(doc), new StreamResult(outputStream));
         } catch (TransformerException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e);
             return false;
         }
 

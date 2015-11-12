@@ -18,11 +18,9 @@ public abstract class JSONParser {
     public static Set<String[]> parseKeyCode(InputStream inputStream) {
         Set<String[]> set = new HashSet<>();
 
-        JsonElement jsonElement = new JsonObject();
+        JsonElement jsonElement = new JsonArray();
 
         jsonElement = new Gson().fromJson(new InputStreamReader(inputStream), jsonElement.getClass());
-
-        jsonElement = jsonElement.getAsJsonObject().get("keys");
 
         for (JsonElement e : jsonElement.getAsJsonArray()) {
             JsonObject jObject = e.getAsJsonObject();
