@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.jar.JarFile;
@@ -45,7 +44,7 @@ public abstract class FrameHelper {
         // CREATE BACKUP
         try {
             if (!new File(fileName + ".bak").exists())
-                Files.copy(Paths.get(fileName), Paths.get(fileName + ".bak"));
+                Utility.copy(Files.newInputStream(Paths.get(fileName)), Files.newOutputStream(Paths.get(fileName + ".bak")));
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e);
         }
@@ -87,7 +86,7 @@ public abstract class FrameHelper {
         JMenuItem menuItem = new JMenuItem("Restore Backup");
         menuItem.addActionListener(e -> {
             try {
-                Files.copy(Paths.get(fileName + ".bak"), Paths.get(fileName), StandardCopyOption.REPLACE_EXISTING);
+                Utility.copy(Files.newInputStream(Paths.get(fileName + ".bak")), Files.newOutputStream(Paths.get(fileName)));
                 JOptionPane.showMessageDialog(null, "Back up has been restored successfully!");
                 savedHotKeys = XMLParser.parse(Files.newInputStream(Paths.get(fileName)));
                 reset();
