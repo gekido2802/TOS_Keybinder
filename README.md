@@ -3,7 +3,10 @@ This tool is meant to edit the control keys of Tree of Savior.
 Any other XML file not formatted like it won't works.
 
 ## Requires ##
-This software requires Java to work.
+This software requires Java 8 to work.
+
+## Download ##
+Download the latest .jar release in the release section.
 
 ## Usage ##
 * Simply double click on the jar.
