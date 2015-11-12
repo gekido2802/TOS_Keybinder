@@ -186,7 +186,7 @@ public abstract class FrameHelper {
                 @Override
                 public void keyReleased(KeyEvent e) {
                     if (edit != null) {
-                        keyPressed = new ArrayList<>();
+                        keyPressed.remove(((Integer) e.getKeyCode()));
                     }
                 }
             });
