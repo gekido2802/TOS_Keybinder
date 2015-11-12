@@ -1,0 +1,410 @@
+[
+  {
+    "tosId": "CancelButton",
+    "display": "Cancel"
+  },
+  {
+    "tosId": "Cellinfo",
+    "display": "CellInfo"
+  },
+  {
+    "tosId": "Charinfo",
+    "display": "Character"
+  },
+  {
+    "tosId": "Chat",
+    "display": "Chat"
+  },
+  {
+    "tosId": "ChatMacro1",
+    "display": "Chat Macro 1"
+  },
+  {
+    "tosId": "ChatMacro2",
+    "display": "Chat Macro 2"
+  },
+  {
+    "tosId": "ChatMacro3",
+    "display": "Chat Macro 3"
+  },
+  {
+    "tosId": "ChatMacro4",
+    "display": "Chat Macro 4"
+  },
+  {
+    "tosId": "ChatMacro5",
+    "display": "Chat Macro 5"
+  },
+  {
+    "tosId": "ChatMacro6",
+    "display": "Chat Macro 6"
+  },
+  {
+    "tosId": "ChatMacro7",
+    "display": "Chat Macro 7"
+  },
+  {
+    "tosId": "ChatMacro8",
+    "display": "Chat Macro 8"
+  },
+  {
+    "tosId": "ChatMacro9",
+    "display": "Chat Macro 9"
+  },
+  {
+    "tosId": "ChatMacro10",
+    "display": "Chat Macro 10"
+  },
+  {
+    "tosId": "ChatPad",
+    "display": "Chat Pad"
+  },
+  {
+    "tosId": "ChatType",
+    "display": "Chat Type"
+  },
+  {
+    "tosId": "CompanionInformation",
+    "display": "Compagnion Information"
+  },
+  {
+    "tosId": "CompanionStroke",
+    "display": "CompanionStroke"
+  },
+  {
+    "tosId": "Escape",
+    "display": "Escape"
+  },
+  {
+    "tosId": "FriendShip",
+    "display": "Friend Ship"
+  },
+  {
+    "tosId": "Friends",
+    "display": "Friends"
+  },
+  {
+    "tosId": "Inventory",
+    "display": "Inventory"
+  },
+  {
+    "tosId": "Journal",
+    "display": "Journal"
+  },
+  {
+    "tosId": "Jump",
+    "display": "Jump"
+  },
+  {
+    "tosId": "LAlt",
+    "display": "Left Alt"
+  },
+  {
+    "tosId": "LHand",
+    "display": "Sub Attack"
+  },
+  {
+    "tosId": "Map",
+    "display": "Map"
+  },
+  {
+    "tosId": "Minimap_+",
+    "display": "Minimap +"
+  },
+  {
+    "tosId": "Minimap_+2",
+    "display": "Minimap +2"
+  },
+  {
+    "tosId": "Minimap_-",
+    "display": "Minimap -"
+  },
+  {
+    "tosId": "Minimap_-2",
+    "display": "Minimap -2"
+  },
+  {
+    "tosId": "MoveDown",
+    "display": "Down"
+  },
+  {
+    "tosId": "MoveLeft",
+    "display": "Left"
+  },
+  {
+    "tosId": "MoveLeftDown",
+    "display": "Left-Down"
+  },
+  {
+    "tosId": "MoveLeftUp",
+    "display": "Left-Up"
+  },
+  {
+    "tosId": "MoveRight",
+    "display": "Right"
+  },
+  {
+    "tosId": "MoveRightDown",
+    "display": "Right-Down"
+  },
+  {
+    "tosId": "MoveRightUp",
+    "display": "Right-Up"
+  },
+  {
+    "tosId": "MoveUp",
+    "display": "Up"
+  },
+  {
+    "tosId": "MyPage",
+    "display": "My Page"
+  },
+  {
+    "tosId": "NormalAttack",
+    "display": "Attack"
+  },
+  {
+    "tosId": "OkayButton",
+    "display": "Okay"
+  },
+  {
+    "tosId": "PartyHistory",
+    "display": "Party History"
+  },
+  {
+    "tosId": "Pose",
+    "display": "Pose"
+  },
+  {
+    "tosId": "QuestInfo_",
+    "display": "Quest"
+  },
+  {
+    "tosId": "QuestItemUse",
+    "display": "Use Quest Item"
+  },
+  {
+    "tosId": "QuickSlotExecute1",
+    "display": "Quick Slot 1"
+  },
+  {
+    "tosId": "QuickSlotExecute2",
+    "display": "Quick Slot 2"
+  },
+  {
+    "tosId": "QuickSlotExecute3",
+    "display": "Quick Slot 3"
+  },
+  {
+    "tosId": "QuickSlotExecute4",
+    "display": "Quick Slot 4"
+  },
+  {
+    "tosId": "QuickSlotExecute5",
+    "display": "Quick Slot 5"
+  },
+  {
+    "tosId": "QuickSlotExecute6",
+    "display": "Quick Slot 6"
+  },
+  {
+    "tosId": "QuickSlotExecute7",
+    "display": "Quick Slot 7"
+  },
+  {
+    "tosId": "QuickSlotExecute8",
+    "display": "Quick Slot 8"
+  },
+  {
+    "tosId": "QuickSlotExecute9",
+    "display": "Quick Slot 9"
+  },
+  {
+    "tosId": "QuickSlotExecute10",
+    "display": "Quick Slot 10"
+  },
+  {
+    "tosId": "QuickSlotExecute11",
+    "display": "Quick Slot 11"
+  },
+  {
+    "tosId": "QuickSlotExecute12",
+    "display": "Quick Slot 12"
+  },
+  {
+    "tosId": "QuickSlotExecute13",
+    "display": "Quick Slot 13"
+  },
+  {
+    "tosId": "QuickSlotExecute14",
+    "display": "Quick Slot 14"
+  },
+  {
+    "tosId": "QuickSlotExecute15",
+    "display": "Quick Slot 15"
+  },
+  {
+    "tosId": "QuickSlotExecute16",
+    "display": "Quick Slot 16"
+  },
+  {
+    "tosId": "QuickSlotExecute17",
+    "display": "Quick Slot 17"
+  },
+  {
+    "tosId": "QuickSlotExecute18",
+    "display": "Quick Slot 18"
+  },
+  {
+    "tosId": "QuickSlotExecute19",
+    "display": "Quick Slot 19"
+  },
+  {
+    "tosId": "QuickSlotExecute20",
+    "display": "Quick Slot 20"
+  },
+  {
+    "tosId": "QuickSlotExecute21",
+    "display": "Quick Slot 21"
+  },
+  {
+    "tosId": "QuickSlotExecute22",
+    "display": "Quick Slot 22"
+  },
+  {
+    "tosId": "QuickSlotExecute23",
+    "display": "Quick Slot 23"
+  },
+  {
+    "tosId": "QuickSlotExecute24",
+    "display": "Quick Slot 24"
+  },
+  {
+    "tosId": "QuickSlotExecute25",
+    "display": "Quick Slot 25"
+  },
+  {
+    "tosId": "QuickSlotExecute26",
+    "display": "Quick Slot 26"
+  },
+  {
+    "tosId": "QuickSlotExecute27",
+    "display": "Quick Slot 27"
+  },
+  {
+    "tosId": "QuickSlotExecute28",
+    "display": "Quick Slot 28"
+  },
+  {
+    "tosId": "QuickSlotExecute29",
+    "display": "Quick Slot 29"
+  },
+  {
+    "tosId": "QuickSlotExecute30",
+    "display": "Quick Slot 30"
+  },
+  {
+    "tosId": "QuickSlotExecute31",
+    "display": "Quick Slot 31"
+  },
+  {
+    "tosId": "QuickSlotExecute32",
+    "display": "Quick Slot 32"
+  },
+  {
+    "tosId": "QuickSlotExecute33",
+    "display": "Quick Slot 33"
+  },
+  {
+    "tosId": "QuickSlotExecute34",
+    "display": "Quick Slot 34"
+  },
+  {
+    "tosId": "QuickSlotExecute35",
+    "display": "Quick Slot 35"
+  },
+  {
+    "tosId": "QuickSlotExecute36",
+    "display": "Quick Slot 36"
+  },
+  {
+    "tosId": "QuickSlotExecute37",
+    "display": "Quick Slot 37"
+  },
+  {
+    "tosId": "QuickSlotExecute38",
+    "display": "Quick Slot 38"
+  },
+  {
+    "tosId": "QuickSlotExecute39",
+    "display": "Quick Slot 39"
+  },
+  {
+    "tosId": "QuickSlotExecute40",
+    "display": "Quick Slot 40"
+  },
+  {
+    "tosId": "Record",
+    "display": "Record"
+  },
+  {
+    "tosId": "RideOff",
+    "display": "Ride Off"
+  },
+  {
+    "tosId": "RideOn",
+    "display": "Ride On"
+  },
+  {
+    "tosId": "Select",
+    "display": "Select"
+  },
+  {
+    "tosId": "SkillTree",
+    "display": "Skills"
+  },
+  {
+    "tosId": "Status",
+    "display": "Status"
+  },
+  {
+    "tosId": "Tab",
+    "display": "Tab"
+  },
+  {
+    "tosId": "TargetFixed",
+    "display": "Target Lock"
+  },
+  {
+    "tosId": "ToggleRest",
+    "display": "Rest Mode"
+  },
+  {
+    "tosId": "UISelectMode",
+    "display": "UI Select Mode"
+  },
+  {
+    "tosId": "UISelectMode_LDClick",
+    "display": "UI Select Mode LD Click"
+  },
+  {
+    "tosId": "UISelectMode_RDClick",
+    "display": "UI Select Mode RD Click"
+  },
+  {
+    "tosId": "UISelectMode_WheelUp",
+    "display": "UI Select Mode WheelUp"
+  },
+  {
+    "tosId": "WarpQuest",
+    "display": "Warp To Quest"
+  },
+  {
+    "tosId": "WeaponSwap",
+    "display": "Weapon Swap"
+  },
+  {
+    "tosId": "Worldmap",
+    "display": "World Map"
+  }
+]

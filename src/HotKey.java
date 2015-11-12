@@ -123,7 +123,13 @@ public class HotKey implements Comparable<HotKey> {
 
     @Override
     public int compareTo(HotKey o) {
-        return this.id.compareTo(o.id);
+
+        String a = JSONParser.getKeys().get(this.id), b = JSONParser.getKeys().get(o.id);
+
+        if (a == null || b == null)
+            return this.id.compareTo(o.id);
+        else
+            return JSONParser.getKeys().get(this.id).compareTo(JSONParser.getKeys().get(o.id));
     }
 
     @Override

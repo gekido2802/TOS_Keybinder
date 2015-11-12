@@ -34,7 +34,11 @@ public class Utility {
 
     // FORMAT A HOTKEY PROPERLY
     public static String format(Converter converter, HotKey hotKey) {
-        return (hotKey.useCtrl() ? "Ctrl + " : "") + (hotKey.useAlt() ? "Alt + " : "") + (hotKey.useShift() ? "Shift + " : "") + converter.fromTOSKeyToDisplay(hotKey.getKey());
+
+        return (hotKey.useCtrl() && converter.fromTOSKEYToKeyCode(hotKey.getKey()) != KeyEvent.VK_CONTROL ? "Ctrl + " : "")
+                + (hotKey.useAlt() && converter.fromTOSKEYToKeyCode(hotKey.getKey()) != KeyEvent.VK_ALT ? "Alt + " : "")
+                + (hotKey.useShift() && converter.fromTOSKEYToKeyCode(hotKey.getKey()) != KeyEvent.VK_SHIFT ? "Shift + " : "")
+                + converter.fromTOSKeyToDisplay(hotKey.getKey());
     }
 
     // VALIDATE IF THE KEYCODE IS A CONTROL KEY

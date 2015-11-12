@@ -40,4 +40,13 @@ public class Converter {
 
         return null;
     }
+
+    public int fromTOSKEYToKeyCode(String tosKey) {
+        for (String[] s : set) {
+            if (s[1].equals(tosKey))
+                return Integer.parseInt(s[0]);
+        }
+
+        return -1;
+    }
 }

@@ -56,7 +56,8 @@ public abstract class FrameHelper {
         // PARSING FILES
         try {
             JarFile jarFile = new JarFile(URLDecoder.decode(FrameHelper.class.getProtectionDomain().getCodeSource().getLocation().getPath(), "UTF-8"));
-            converter = new Converter(JSONParser.parse(jarFile.getInputStream(jarFile.getEntry("resources/keycode.json"))));
+            converter = new Converter(JSONParser.parseKeyCode(jarFile.getInputStream(jarFile.getEntry("resources/keycode.json"))));
+            JSONParser.parseTOSKeyId(jarFile.getInputStream(jarFile.getEntry("resources/toskeyid.json")));
             savedHotKeys = XMLParser.parse(Files.newInputStream(Paths.get(fileName)));
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
@@ -113,7 +114,10 @@ public abstract class FrameHelper {
         // FILL MAIN PANEL
         for (int i = 0; i < savedHotKeys.size(); i++) {
             // CREATE ID'S TEXT BOX
-            JTextField textField = new JTextField(savedHotKeys.get(i).getId());
+            JTextField textField = new JTextField(JSONParser.getKeys().get(savedHotKeys.get(i).getId()));
+
+            if (JSONParser.getKeys().get(savedHotKeys.get(i).getId()) == null)
+                System.out.println(savedHotKeys.get(i).getId() + " : " + JSONParser.getKeys().get(savedHotKeys.get(i).getId()));
             textField.setPreferredSize(new Dimension(75, 25));
             textField.setEditable(false);
             textField.setHorizontalAlignment(JLabel.CENTER);
@@ -182,15 +186,13 @@ public abstract class FrameHelper {
             textField.addKeyListener(new KeyAdapter() {
                 @Override
                 public void keyPressed(KeyEvent e) {
-                    setKey(hotKey, e.getKeyCode());
-
-                    validation();
+                    setKey(hotKey, e.getKeyCode(), false);
                 }
 
                 @Override
                 public void keyReleased(KeyEvent e) {
                     if (edit != null) {
-                        keyPressed.remove(((Integer) e.getKeyCode()));
+                        setKey(hotKey, e.getKeyCode(), true);
                     }
                 }
             });
@@ -232,11 +234,11 @@ public abstract class FrameHelper {
     }
 
     // SET A HOTKEY USING THE KEYCODE
-    private static void setKey(HotKey hotKey, int keyCode) {
+    private static void setKey(HotKey hotKey, int keyCode, boolean onRelease) {
         if (edit != null) {
             keyPressed.add(keyCode);
 
-            if (!Utility.isControlKey(keyCode)) {
+            if (!Utility.isControlKey(keyCode) || onRelease) {
 
                 hotKey.setKey(converter.fromKeyCodeToTOSKey(keyCode)).setUseShift(keyPressed.contains(KeyEvent.VK_SHIFT))
                         .setUseCtrl(keyPressed.contains(KeyEvent.VK_CONTROL)).setUseAlt(keyPressed.contains(KeyEvent.VK_ALT));
@@ -245,6 +247,8 @@ public abstract class FrameHelper {
 
                 edit.setText(Utility.format(converter, hotKey));
                 edit = null;
+
+                validation();
             }
         }
     }
@@ -258,13 +262,19 @@ public abstract class FrameHelper {
         }
 
         for (JTextField j : inputs) {
+
+            if (j.getText().equals("null")) {
+                j.setBorder(BorderFactory.createLineBorder(Color.RED));
+                conflict = true;
+            }
+
             for (JTextField j2 : inputs) {
                 if (j == j2)
                     continue;
 
                 if (j.getText().equals(j2.getText())) {
-                    j.setBorder(BorderFactory.createLineBorder(Color.red));
-                    j2.setBorder(BorderFactory.createLineBorder(Color.red));
+                    j.setBorder(BorderFactory.createLineBorder(Color.RED));
+                    j2.setBorder(BorderFactory.createLineBorder(Color.RED));
                     conflict = true;
                 }
             }
