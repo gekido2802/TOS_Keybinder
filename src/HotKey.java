@@ -1,4 +1,4 @@
-public class HotKey {
+public class HotKey implements Comparable<HotKey> {
 
     // FIELDS
     private String id;
@@ -119,6 +119,11 @@ public class HotKey {
         result = 31 * result + (useCtrl ? 1 : 0);
         result = 31 * result + (onEdit ? 1 : 0);
         return result;
+    }
+
+    @Override
+    public int compareTo(HotKey o) {
+        return this.id.compareTo(o.id);
     }
 
     @Override
