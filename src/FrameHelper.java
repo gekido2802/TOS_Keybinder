@@ -13,7 +13,7 @@ import java.util.jar.JarFile;
 
 public abstract class FrameHelper {
 
-    private static final String version = "v1.0 [Beta]";
+    private static final String version = "v0.1 [Beta]";
     private static JTextField edit;
     private static Converter converter;
     private static List<HotKey> savedHotKeys, modifiedHotKeys;
@@ -77,7 +77,7 @@ public abstract class FrameHelper {
         frame.setTitle("TOS Keybinder " + version);
         frame.setResizable(false);
         frame.setLayout(new BorderLayout(0, 0));
-        frame.setPreferredSize(new Dimension(350, 600));
+        frame.setPreferredSize(new Dimension(500, 700));
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         // CREATE MENU BAR
@@ -116,9 +116,6 @@ public abstract class FrameHelper {
             // CREATE ID'S TEXT BOX
             JTextField textField = new JTextField(JSONParser.getKeys().get(savedHotKeys.get(i).getId()));
 
-            if (JSONParser.getKeys().get(savedHotKeys.get(i).getId()) == null)
-                System.out.println(savedHotKeys.get(i).getId() + " : " + JSONParser.getKeys().get(savedHotKeys.get(i).getId()));
-            textField.setPreferredSize(new Dimension(75, 25));
             textField.setEditable(false);
             textField.setHorizontalAlignment(JLabel.CENTER);
             panel.add(textField);
@@ -141,7 +138,6 @@ public abstract class FrameHelper {
         }
 
         setTextFieldKeyListeners(inputs);
-
 
         // CREATE BUTTON PANEL
         panel = new JPanel(new GridLayout(1, 2, 50, 50));
